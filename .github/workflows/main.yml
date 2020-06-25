@@ -33,7 +33,7 @@ jobs:
         export PATH=${DEVKITPRO}/tools/bin:$PATH
         
         sudo dkp-pacman -Sy --noconfirm 3ds-examples 3ds-sdl 3ds-pkg-config citro2d citro3d devkitarm-crtls devkitarm-rules libctru 3dslink 3dstools devkit-env devkitARM general-tools picasso tex3ds
-        ./configure /configure --os=N3DS --host $DEVKITARM/bin/arm-none-eabi --enable-static --prefix-dir=$DEVKITPRO --with-sdl --without-png --without-threads --disable-network --disable-unicode --without-libfontconfig --without-zlib --without-libfreetype --without-icu --with-sdl=/opt/devkitpro/portlibs/3ds/bin/sdl-config
+        ./configure /configure --os=N3DS --host $DEVKITARM/bin/arm-none-eabi --enable-static --prefix-dir=$DEVKITPRO --with-sdl --without-png --without-threads --disable-network --disable-unicode --without-libfontconfig --without-zlib --without-libfreetype --without-icu -enable-debug=2 --with-sdl=/opt/devkitpro/portlibs/3ds/bin/sdl-config
         make -j8
         $DEVKITPRO/tools/bin/3dsxtool ./bin/openttd openttd.3dsx
     - uses: actions/upload-artifact@v2
