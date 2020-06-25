@@ -25,5 +25,12 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Run a multi-line script
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb
+        sudo dpkg -i devkitpro-pacman.deb
+        export DEVKITPRO=/opt/devkitpro
+        export DEVKITARM=${DEVKITPRO}/devkitARM
+        export DEVKITPPC=${DEVKITPRO}/devkitPPC
+        export PATH=${DEVKITPRO}/tools/bin:$PATH
+        sudo dkp-pacman -Sy 3ds-dev 3ds-sdl
+        
+        
