@@ -35,8 +35,7 @@ jobs:
         sudo dkp-pacman -Sy --noconfirm 3ds-examples 3ds-sdl 3ds-pkg-config citro2d citro3d devkitarm-crtls devkitarm-rules libctru 3dslink 3dstools devkit-env devkitARM general-tools picasso tex3ds
         ./configure /configure --os=N3DS --host $DEVKITARM/bin/arm-none-eabi --enable-static --prefix-dir=$DEVKITPRO --with-sdl --without-png --without-threads --disable-network --disable-unicode --without-libfontconfig --without-zlib --without-libfreetype --without-icu --with-sdl=/opt/devkitpro/portlibs/3ds/bin/sdl-config
         make -j8
-    - name: Make 3dsx file.
-      run: $DEVKITPRO/tools/bin/3dsxtool ./bin/openttd openttd.3dsx
+        $DEVKITPRO/tools/bin/3dsxtool ./bin/openttd openttd.3dsx
     - uses: actions/upload-artifact@v2
       with:
         name: my-artifact
