@@ -4,13 +4,17 @@ A port of OpenTTD v0.7.0 to the Nintendo 3DS
 * Download the latest version of openttd.zip from the releases page.
 * Extract its contents to /3ds/ on your SD card.
 ## Building
-
-I've only tried compiling this on Linux so I'm not sure if it will work on a non-Unix-like OS.
+* Install DevKitPro/Add DKP packages to your pacman
+* Install the 3DS dev depenencies (`dkp-pacman -S 3ds-dev`)
 * Install the 3ds-sdl library using (dkp-)pacman
 * From the root of the project directory, run:
 ```bash
 ./configure --os=N3DS --host $DEVKITARM/bin/arm-none-eabi --enable-static --prefix-dir=$DEVKITPRO --with-sdl --without-png --without-threads --disable-network --disable-unicode --without-libfontconfig --without-zlib --without-libfreetype --without-icu --enable-debug=2
 ```
+(If you are having issues with your sdl, 
+specify a path to SDL like this `--with-sdl=/opt/devkitpro/portlibs/3ds/bin/sdl-config`. 
+You can find your path by using `dkp-pacman -Ql 3ds-sdl`)
+
 * Type:
 ```bash
 make
@@ -19,8 +23,8 @@ make
 ```bash
 $DEVKITPRO/tools/bin/3dsxtool openttd openttd.3dsx
 ```
-I don't know really what I'm doing when it come to writing configure files lol. If anyone has advice I'll gladly take it.
-## Why 0.7.0 instead of a later version?
-Memory restrictions. The later versions I tried would always crash, even with a small map, because they simply wouldn't fit into the application memory of the 3DS. (The OLD 3DS at least. I don't own a NEW model I could test with.)
-One of the other reasons I picked 0.7.0 specifically, is it's the version that the DS port uses. This gives me something I can borrow some ideas from.
-It also has plenty of the features you would expect from OpenTTD, like OpenGFX support.
+* You will need to copy the generated folders from bin, the 3dsx file, as well as `openttd.cfg` and the `data` folder into a new folder for distribution. This is also done automatically by the CI.
+
+If you are having issues finding 
+## Why 0.7.0?
+Smaller memory footprint, already a port on DS. This version will be bumped, and compatiblity may only be kept with the new 3ds.
