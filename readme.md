@@ -24,9 +24,3 @@ I don't know really what I'm doing when it come to writing configure files lol. 
 Memory restrictions. The later versions I tried would always crash, even with a small map, because they simply wouldn't fit into the application memory of the 3DS. (The OLD 3DS at least. I don't own a NEW model I could test with.)
 One of the other reasons I picked 0.7.0 specifically, is it's the version that the DS port uses. This gives me something I can borrow some ideas from.
 It also has plenty of the features you would expect from OpenTTD, like OpenGFX support.
-## To do
-- [ ] Resize UI elements to better fit the 3DS's low screen resolution. 
-- [ ] Put a viewport on the top screen, right now it's used as a console.
-- [ ] Networking support.
-- [ ] Fix music.
-- [ ] (maybe) Move to a slightly newer version of OpenTTD??????
