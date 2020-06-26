@@ -1,7 +1,7 @@
 # OpenTTD port for the 3DS
 A port of OpenTTD v0.7.0 to the Nintendo 3DS
 ## Installation
-* Download the latest version of openttd.zip from the releases page.
+* Download the latest version of openttd.zip from the actions page.
 * Extract its contents to /3ds/ on your SD card.
 ## Building
 * Install DevKitPro/Add DKP packages to your pacman
