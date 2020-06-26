@@ -1,0 +1,16 @@
+_blitter_sources = [ "null.cpp" ]
+
+if (is_dedicated) {
+  _blitter_sources += [
+    "32bpp_anim.cpp",
+    "32bpp_base.cpp",
+    "32bpp_optimized.cpp",
+    "32bpp_simple.cpp",
+    "8bpp_base.cpp",
+    "8bpp_debug.cpp",
+    "8bpp_optimized.cpp",
+    "8bpp_simple.cpp",
+  ]
+}
+
+blitter_sources = rebase_path(_blitter_sources, root_build_dir, "//src/blitter")

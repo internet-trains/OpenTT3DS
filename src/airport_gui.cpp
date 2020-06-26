@@ -39,7 +39,7 @@ static void PlaceAirport(TileIndex tile)
 	uint32 p2 = _ctrl_pressed;
 	SB(p2, 16, 16, INVALID_STATION); // no station to join
 
-	CommandContainer cmdcont = { tile, _selected_airport_type, p2, CMD_BUILD_AIRPORT | CMD_MSG(STR_A001_CAN_T_BUILD_AIRPORT_HERE), CcBuildAirport, "" };
+	CommandContainer cmdcont = { tile, _selected_airport_type, p2, CMD_BUILD_AIRPORT | static_cast<uint32>(CMD_MSG(STR_A001_CAN_T_BUILD_AIRPORT_HERE)), CcBuildAirport, "" };
 	ShowSelectStationIfNeeded(cmdcont, _thd.size.x / TILE_SIZE, _thd.size.y / TILE_SIZE);
 }
 

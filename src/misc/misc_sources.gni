@@ -1,0 +1,4 @@
+misc_sources = rebase_path([
+  "countedobj.cpp",
+  "dbg_helpers.cpp",
+], root_build_dir, "//src/misc")

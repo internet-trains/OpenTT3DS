@@ -1,0 +1,10 @@
+executable("strgen") {
+  deps = ["//build/endian_check:endian_host"]
+  defines = ["STRGEN"]
+  include_dirs = ["$root_gen_dir"]
+  sources = [
+    "//src/core/alloc_func.cpp",
+    "//src/strgen/strgen.cpp",
+    "//src/string.cpp",
+  ]
+}

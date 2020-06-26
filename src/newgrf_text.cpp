@@ -72,10 +72,10 @@ public:
 		/* dummy operator delete to silence VC8:
 		 * 'void *GRFText::operator new(size_t,size_t)' : no matching operator delete found;
 		 *     memory will not be freed if initialization throws an exception */
-		void operator delete(void *p, size_t extra)
+		/*void operator delete(void *p, size_t extra)
 		{
 			return ::operator delete(p);
-		}
+		}*/
 
 	public:
 		GRFText *next;

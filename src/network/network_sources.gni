@@ -1,0 +1,18 @@
+import("core/network_core_sources.gni")
+
+network_sources = rebase_path([
+  "network.cpp",
+  "network_client.cpp",
+  "network_command.cpp",
+  "network_content.cpp",
+  "network_gamelist.cpp",
+  "network_server.cpp",
+  "network_udp.cpp",
+], root_build_dir, "//src/network")
+network_sources += network_core_sources
+
+network_gui_sources = rebase_path([
+  "network_chat_gui.cpp",
+  "network_content_gui.cpp",
+  "network_gui.cpp",
+], root_build_dir, "//src/network")

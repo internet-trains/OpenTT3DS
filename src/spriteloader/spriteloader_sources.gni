@@ -1,0 +1,7 @@
+_spriteloader_sources = [ "grf.cpp" ]
+
+if (has_png) {
+  _spriteloader_sources += [ "png.cpp" ]
+}
+
+spriteloader_sources = rebase_path(_spriteloader_sources, root_build_dir, "//src/spriteloader")

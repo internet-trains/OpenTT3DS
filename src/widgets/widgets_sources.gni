@@ -1,0 +1,1 @@
+widgets_sources = rebase_path([ "dropdown.cpp" ], root_build_dir, "//src/widgets")

@@ -1,0 +1,29 @@
+toolchain("clang") {
+    tool("cc") {
+        command = "clang {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} -c {{source}} -o {{output}}"
+        outputs = [ "{{source_out_dir}}/{{source_name_part}}.o" ]
+        description = "clang {{source}}"
+    }
+    tool("cxx") {
+        command = "clang++ {{defines}} {{include_dirs}} {{cflags}} {{cflags_cc}} -c  {{source}} -o {{output}}"
+        outputs = [ "{{source_out_dir}}/{{source_name_part}}.o" ]
+        description = "clang++ {{source}}"
+    }
+    tool("link") {
+        outfile = "{{target_output_name}}{{output_extension}}"
+        rspfile = "$outfile.rsp"
+        rspfile_content = "{{inputs}}"
+        command = "clang++ {{ldflags}} -o $outfile -Wl,--start-group @$rspfile {{solibs}} -Wl,--end-group {{libs}}"
+        description = "LINK $outfile"
+        default_output_dir = "{{root_out_dir}}"
+        outputs = [ outfile ]
+    }
+    tool("copy") {
+        command = "cp -af {{source}} {{output}}"
+        description = "COPY {{source}} {{output}}"
+    }
+    tool("stamp") {
+        command = "touch {{output}}"
+        description = "STAMP {{output}}"
+    }
+}

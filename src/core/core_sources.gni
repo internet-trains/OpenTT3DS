@@ -1,0 +1,5 @@
+core_sources = rebase_path([
+    "alloc_func.cpp",
+    "bitmath_func.cpp",
+    "random_func.cpp",
+], root_build_dir, "//src/core")

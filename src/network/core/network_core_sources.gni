@@ -1,0 +1,10 @@
+network_core_sources = rebase_path([
+  "address.cpp",
+  "host.cpp",
+  "packet.cpp",
+  "tcp.cpp",
+  "tcp_connect.cpp",
+  "tcp_content.cpp",
+  "tcp_game.cpp",
+  "udp.cpp",
+], root_build_dir, "//src/network/core")

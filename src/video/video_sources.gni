@@ -1,0 +1,30 @@
+_video_sources = [
+  "dedicated_v.cpp",
+  "null_v.cpp",
+]
+
+if (!is_dedicated) {
+  if (has_allegro) {
+    _video_sources += [ "allegro_v.cpp" ]
+  }
+
+  if (has_sdl) {
+    _video_sources += [ "sdl_v.cpp" ]
+  }
+
+  if (target_os == "win32" || target_os == "wince") {
+    _video_sources += [ "win32_v.cpp" ]
+  }
+}
+
+if (target_os == "osx" && has_cocoa) {
+  _video_sources += [
+    "cocoa/cocoa_v.mm",
+    "cocoa/event.mm",
+    "cocoa/fullscreen.mm",
+    "cocoa/wnd_quartz.mm",
+    "cocoa/wnd_quickdraw.mm",
+  ]
+}
+
+video_sources = rebase_path(_video_sources, root_build_dir, "//src/video")

@@ -1,0 +1,5 @@
+yapf_sources = rebase_path([
+  "yapf_rail.cpp",
+  "yapf_road.cpp",
+  "yapf_ship.cpp",
+], root_build_dir, "//src/yapf")

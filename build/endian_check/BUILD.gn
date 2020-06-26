@@ -1,0 +1,45 @@
+executable("endian_check") {
+  sources = ["//src/endian_check.cpp"]
+}
+
+template("_endian_check") {
+  forward_variables_from(invoker, "*")
+
+  name = "endian_" + target_name
+  codegen_name = name + "_action"
+  action(codegen_name) {
+    deps = [":endian_check"]
+    _input = "$root_build_dir/endian_check"
+    inputs = [_input]
+    _output = "$root_gen_dir/$name.h"
+    outputs = [_output]
+    script = "//endian_checker.py"
+    args = [
+        rebase_path(_output),
+        rebase_path(_input),
+        endian_force,
+    ]
+  }
+  source_set(name) {
+    sources = get_target_outputs(":$codegen_name")
+    deps = [":$codegen_name"]
+  }
+}
+
+_endian_check("target") {}
+
+_endian_check("host") {}
+
+# action("endian_target") {
+#   deps = [":endian_check"]
+#   input = "$root_build_dir/endian_check"
+#   inputs = [input]
+#   output = "$root_gen_dir/endian_target.h"
+#   outputs = [output]
+#   script = "//endian_checker.py"
+#   args = [
+#     rebase_path(output),
+#     rebase_path(input),
+#     endian_force,
+#   ]
+# }

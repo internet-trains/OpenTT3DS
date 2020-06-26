@@ -4,6 +4,7 @@
 
 #ifndef CMD_HELPER_H
 #define CMD_HELPER_H
+#include "core/bitmath_func.hpp"
 
 #include "direction_type.h"
 #include "road_type.h"

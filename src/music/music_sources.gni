@@ -1,0 +1,33 @@
+_music_sources = [ "null_m.cpp" ]
+
+if (!is_dedicated) {
+  if (has_allegro) {
+    _music_sources += [ "allegro_m.cpp" ]
+  }
+
+  if (has_directmusic) {
+    _music_sources += [ "dmusic.cpp" ]
+  }
+
+  if (target_os == "win32") {
+    _music_sources += [ "win32_m.cpp" ]
+  } else {
+    if (target_os != "wince" && target_os != "psp" && target_os != "dos") {
+      _music_sources += [ "extmidi.cpp" ]
+    }
+  }
+
+  if (target_os == "beos") {
+    _music_sources += [ "bemidi.cpp" ]
+  }
+
+  if (has_libtimidity) {
+    _music_sources += [ "libtimidity.cpp" ]
+  }
+
+  if (target_os == "osx") {
+    _music_sources += [ "qtmidi.cpp" ]
+  }
+}
+
+music_sources = rebase_path(_music_sources, root_build_dir, "//src/music")

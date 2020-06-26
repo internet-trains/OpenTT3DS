@@ -1,0 +1,49 @@
+template("lang") {
+  assert(defined(invoker.sources), "Need one or more language.txt sources in $target_name")
+
+  _source_dir = "//src/lang"
+  if (defined(invoker.source_dir)) {
+      _source_dir = invoker.source_dir
+  }
+
+  _dest_dir = "$root_build_dir/lang"
+  if (defined(invoker.dest_dir)) {
+    _dest_dir = invoker.dest_dir
+  }
+
+  # code_gen_target_name = target_name + "_code_gen"
+  _script = "$root_build_dir/strgen"
+
+  if (invoker.sources == []) {
+    action(target_name) {
+      inputs = [ _script, "//src/lang/english.txt" ]
+      deps = ["//build/strgen"]
+      outputs = ["$_dest_dir/table/strings.h"]
+      script = "//strgen_runner.py"
+      args = [
+        rebase_path(_script),
+        "-s", rebase_path(_source_dir),
+        "-d", rebase_path(_dest_dir),
+      ]
+    }
+  } else {
+    action_foreach(target_name) {
+      inputs = [ _script, "//src/lang/english.txt" ]
+      deps = ["//build/strgen"]
+      outputs = [ "$_dest_dir/{{source_name_part}}.lng" ]
+      sources = invoker.sources
+
+      script = "//strgen_runner.py"
+      
+      args = [rebase_path(_script)]
+      if (enable_translator) {
+        args += ["-t"]
+      }
+      args += [
+        "-s", rebase_path(_source_dir),
+        "-d", rebase_path(_dest_dir),
+        "{{source}}",
+      ]
+    }
+  }
+}

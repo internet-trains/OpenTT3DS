@@ -79,6 +79,7 @@ help:
 	@echo "  bundle_bzip2  create the bzip2 installation bundle"
 	@echo "  bundle_lha    create the lha installation bundle"
 	@echo "  bundle_dmg    create the dmg installation bundle"
+	@echo "  bundle_3dsx   create the 3ds bundle"
 
 config.pwd: $(CONFIG_CACHE_PWD)
 	$(MAKE) reconfigure

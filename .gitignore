@@ -9,4 +9,5 @@ bundle/*
 !bin/scripts*
 config.*
 objs/*
+out/*
 src/rev.cpp

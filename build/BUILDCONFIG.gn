@@ -1,0 +1,30 @@
+if (target_os == "") {
+  target_os = host_os
+}
+
+if (target_cpu == "") {
+  target_cpu = host_cpu
+}
+
+if (current_cpu == "") {
+  current_cpu = host_cpu
+}
+
+if (current_os == "") {
+  current_os = target_os
+}
+
+declare_args() {
+    has_sdl = true
+    has_allegro = false
+    has_directmusic = false
+    has_libtimidity = false
+    has_png = false
+    has_cocoa = false
+    is_dedicated = false
+    has_thread = true
+    endian_force = "" # BE | LE | PREPROCESSOR
+    enable_translator = false
+}
+
+set_default_toolchain("//build/toolchain:clang")

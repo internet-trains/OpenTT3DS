@@ -1,0 +1,353 @@
+_openttd_sources = [
+  "airport.cpp",
+  "animated_tile.cpp",
+  "articulated_vehicles.cpp",
+  "autoreplace.cpp",
+  "aystar.cpp",
+  "bmp.cpp",
+  "callback_table.cpp",
+  "cargopacket.cpp",
+  "cargotype.cpp",
+  "cheat.cpp",
+  "command.cpp",
+  "console.cpp",
+  "console_cmds.cpp",
+  "currency.cpp",
+  "date.cpp",
+  "debug.cpp",
+  "dedicated.cpp",
+  "depot.cpp",
+  "driver.cpp",
+  "economy.cpp",
+  "effectvehicle.cpp",
+  "elrail.cpp",
+  "engine.cpp",
+  "fileio.cpp",
+  "fios.cpp",
+  "fontcache.cpp",
+  "gamelog.cpp",
+  "genworld.cpp",
+  "gfx.cpp",
+  "gfxinit.cpp",
+  "heightmap.cpp",
+  "highscore.cpp",
+  "ini.cpp",
+  "landscape.cpp",
+  "map.cpp",
+  "md5.cpp",
+  "minilzo.cpp",
+  "misc.cpp",
+  "mixer.cpp",
+  "music.cpp",
+  "namegen.cpp",
+  "npf.cpp",
+  "oldpool.cpp",
+  "openttd.cpp",
+  "os_timer.cpp",
+  "pathfind.cpp",
+  "pbs.cpp",
+  "queue.cpp",
+  "rail.cpp",
+  "rev.cpp",
+  "road.cpp",
+  "screenshot.cpp",
+  "settings.cpp",
+  "signal.cpp",
+  "signs.cpp",
+  "sound.cpp",
+  "spritecache.cpp",
+  "station.cpp",
+  "string.cpp",
+  "strings.cpp",
+  "texteff.cpp",
+  "tgp.cpp",
+  "tile_map.cpp",
+  "vehicle.cpp",
+  "vehiclelist.cpp",
+  "viewport.cpp",
+  "waypoint.cpp",
+  "widget.cpp",
+  "window.cpp",
+]
+
+if (target_os == "win32" || target_os == "wince") {
+  _openttd_sources += [
+    "ottdres.rc",
+    "win32.cpp",
+  ]
+} else if (target_os == "os2") {
+  _openttd_sources += [ "os2.cpp" ]
+} else {
+  _openttd_sources += [ "unix.cpp" ]
+}
+
+if (has_sdl) {
+  _openttd_sources += [ "sdl.cpp" ]
+}
+
+if (has_thread) {
+  if (target_os == "win32") {
+    _openttd_sources += [ "thread_win32.cpp" ]
+  } else if (target_os == "os2") {
+    _openttd_sources += [ "thread_os2.cpp" ]
+  } else if (target_os == "morphos") {
+    _openttd_sources += [ "thread_morphos.cpp" ]
+  } else {
+    _openttd_sources += [ "thread_pthread.cpp" ]
+  }
+} else {
+  _openttd_sources += [ "thread_none.cpp" ]
+}
+
+if (target_os == "osx") {
+  _openttd_sources += [ "os/macosx/macos.mm" ]
+
+  if (has_cocoa) {
+    _openttd_sources += [ "os/macosx/splash.cpp" ]
+  }
+}
+
+command_handlers_sources = [
+  "aircraft_cmd.cpp",
+  "autoreplace_cmd.cpp",
+  "clear_cmd.cpp",
+  "company_cmd.cpp",
+  "disaster_cmd.cpp",
+  "dummy_land.cpp",
+  "group_cmd.cpp",
+  "industry_cmd.cpp",
+  "misc_cmd.cpp",
+  "order_cmd.cpp",
+  "rail_cmd.cpp",
+  "road_cmd.cpp",
+  "roadveh_cmd.cpp",
+  "ship_cmd.cpp",
+  "signs_cmd.cpp",
+  "station_cmd.cpp",
+  "terraform_cmd.cpp",
+  "timetable_cmd.cpp",
+  "town_cmd.cpp",
+  "train_cmd.cpp",
+  "tree_cmd.cpp",
+  "tunnelbridge_cmd.cpp",
+  "unmovable_cmd.cpp",
+  "vehicle_cmd.cpp",
+  "water_cmd.cpp",
+  "waypoint_cmd.cpp",
+]
+_openttd_sources += command_handlers_sources
+
+newgrf_sources = [
+  "newgrf.cpp",
+  "newgrf_canal.cpp",
+  "newgrf_cargo.cpp",
+  "newgrf_commons.cpp",
+  "newgrf_config.cpp",
+  "newgrf_engine.cpp",
+  "newgrf_generic.cpp",
+  "newgrf_house.cpp",
+  "newgrf_industries.cpp",
+  "newgrf_industrytiles.cpp",
+  "newgrf_sound.cpp",
+  "newgrf_spritegroup.cpp",
+  "newgrf_station.cpp",
+  "newgrf_storage.cpp",
+  "newgrf_text.cpp",
+  "newgrf_town.cpp",
+  "newgrf_townname.cpp",
+]
+_openttd_sources += newgrf_sources
+
+map_accessors_sources = [
+  "bridge_map.cpp",
+  "road_map.cpp",
+  "tunnel_map.cpp",
+]
+_openttd_sources += map_accessors_sources
+
+openttd_sources = rebase_path(_openttd_sources, root_build_dir, "//src")
+
+gui_sources = rebase_path([
+  "aircraft_gui.cpp",
+  "airport_gui.cpp",
+  "autoreplace_gui.cpp",
+  "bridge_gui.cpp",
+  "build_vehicle_gui.cpp",
+  "cheat_gui.cpp",
+  "company_gui.cpp",
+  "console_gui.cpp",
+  "depot_gui.cpp",
+  "dock_gui.cpp",
+  "engine_gui.cpp",
+  "genworld_gui.cpp",
+  "graph_gui.cpp",
+  "group_gui.cpp",
+  "highscore_gui.cpp",
+  "industry_gui.cpp",
+  "intro_gui.cpp",
+  "main_gui.cpp",
+  "misc_gui.cpp",
+  "music_gui.cpp",
+  "newgrf_gui.cpp",
+  "news_gui.cpp",
+  "order_gui.cpp",
+  "osk_gui.cpp",
+  "rail_gui.cpp",
+  "road_gui.cpp",
+  "roadveh_gui.cpp",
+  "settings_gui.cpp",
+  "ship_gui.cpp",
+  "signs_gui.cpp",
+  "smallmap_gui.cpp",
+  "station_gui.cpp",
+  "statusbar_gui.cpp",
+  "subsidy_gui.cpp",
+  "terraform_gui.cpp",
+  "timetable_gui.cpp",
+  "toolbar_gui.cpp",
+  "town_gui.cpp",
+  "train_gui.cpp",
+  "transparency_gui.cpp",
+  "tree_gui.cpp",
+  "vehicle_gui.cpp",
+  "waypoint_gui.cpp",
+], root_build_dir, "//src")
+
+import("network/network_sources.gni")
+gui_sources += network_gui_sources
+openttd_sources += gui_sources
+
+openttd_sources += network_sources
+
+import("core/core_sources.gni")
+openttd_sources += core_sources
+
+import("widgets/widgets_sources.gni")
+openttd_sources += widgets_sources
+
+import("saveload/saveload_sources.gni")
+openttd_sources += saveload_sources
+
+import("script/script_sources.gni")
+openttd_sources += script_sources
+
+import("3rdparty/squirrel/squirrel_sources.gni")
+openttd_sources += squirrel_sources
+
+import("ai/ai_sources.gni")
+openttd_sources += ai_sources
+
+import("blitter/blitter_sources.gni")
+openttd_sources += blitter_sources
+
+import("spriteloader/spriteloader_sources.gni")
+openttd_sources += spriteloader_sources
+
+import("misc/misc_sources.gni")
+openttd_sources += misc_sources
+
+import("yapf/yapf_sources.gni")
+openttd_sources += yapf_sources
+
+import("video/video_sources.gni")
+openttd_sources += video_sources
+
+import("music/music_sources.gni")
+openttd_sources += music_sources
+
+import("sound/sound_sources.gni")
+openttd_sources += sound_sources
+
+# executable("endian_check") {
+#   sources = ["//src/endian_check.cpp"]
+# }
+
+# action("endian_target") {
+#   deps = [":endian_check"]
+#   input = "$root_build_dir/endian_check"
+#   inputs = [input]
+#   output = "$root_gen_dir/endian_target.h"
+#   outputs = [output]
+#   script = "//endian_checker.py"
+#   args = [
+#     rebase_path(output),
+#     rebase_path(input),
+#     endian_force,
+#   ]
+# }
+
+import("//build/lang.gni")
+
+# generate table/strings.h
+lang("string_table") {
+  sources = []
+  dest_dir = "$root_build_dir/lang/table"
+}
+
+# generate .lng files
+lang("langs") {
+  sources = [
+    "//src/lang/afrikaans.txt",
+    "//src/lang/arabic_egypt.txt",
+    "//src/lang/brazilian_portuguese.txt",
+    "//src/lang/bulgarian.txt",
+    "//src/lang/catalan.txt",
+    "//src/lang/croatian.txt",
+    "//src/lang/czech.txt",
+    "//src/lang/danish.txt",
+    "//src/lang/dutch.txt",
+    "//src/lang/english.txt",
+    "//src/lang/english_US.txt",
+    "//src/lang/esperanto.txt",
+    "//src/lang/estonian.txt",
+    "//src/lang/finnish.txt",
+    "//src/lang/french.txt",
+    "//src/lang/galician.txt",
+    "//src/lang/german.txt",
+    "//src/lang/hebrew.txt",
+    "//src/lang/hungarian.txt",
+    "//src/lang/icelandic.txt",
+    "//src/lang/indonesian.txt",
+    "//src/lang/italian.txt",
+    "//src/lang/japanese.txt",
+    "//src/lang/korean.txt",
+    "//src/lang/latvian.txt",
+    "//src/lang/lithuanian.txt",
+    "//src/lang/luxembourgish.txt",
+    "//src/lang/norwegian_bokmal.txt",
+    "//src/lang/norwegian_nynorsk.txt",
+    "//src/lang/piglatin.txt",
+    "//src/lang/polish.txt",
+    "//src/lang/portuguese.txt",
+    "//src/lang/romanian.txt",
+    "//src/lang/russian.txt",
+    "//src/lang/simplified_chinese.txt",
+    "//src/lang/slovak.txt",
+    "//src/lang/slovenian.txt",
+    "//src/lang/spanish.txt",
+    "//src/lang/swedish.txt",
+    "//src/lang/traditional_chinese.txt",
+    "//src/lang/turkish.txt",
+    "//src/lang/ukrainian.txt",
+    "//src/lang/welsh.txt",
+  ]
+}
+
+executable("openttd") {
+  sources = openttd_sources
+  cflags = ["-Wno-error", "-Wno-c++11-narrowing", "-Wno-return-type"]
+  defines = ["GLOBAL_DATA_DIR=\"/usr/local/sharegames/openttd\""]
+  include_dirs = [
+    "//src",                            # all the header files in src/
+    "$root_build_dir/lang",             # table/*.h
+    "$root_gen_dir",                    # endian_*.h
+    "//src/3rdparty/squirrel/include",  # squirrel includes
+  ]
+  deps = [
+    "//build/endian_check:endian_target",
+    ":string_table",
+    ":langs",
+  ]
+  # TODO: make this right
+  libs = ["pthread"]
+}

@@ -1,0 +1,4 @@
+script_sources = rebase_path([
+  "squirrel.cpp",
+  "squirrel_std.cpp",
+], root_build_dir)

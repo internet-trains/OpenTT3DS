@@ -1,0 +1,21 @@
+_sound_sources = [ "null_s.cpp" ]
+
+if (!is_dedicated) {
+  if (has_allegro) {
+    _sound_sources += [ "allegro_s.cpp" ]
+  }
+
+  if (has_sdl) {
+    _sound_sources += [ "sdl_s.cpp" ]
+  }
+
+  if (target_os == "win32") {
+    _sound_sources += [ "win32_s.cpp" ]
+  }
+}
+
+if (target_os == "osx" && has_cocoa) {
+  _sound_sources += [ "cocoa_s.cpp" ]
+}
+
+sound_sources = rebase_path(_sound_sources, root_build_dir, "//src/sound")

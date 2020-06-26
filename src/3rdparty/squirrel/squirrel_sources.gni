@@ -1,0 +1,15 @@
+squirrel_sources = rebase_path([
+  "sqstdlib/sqstdaux.cpp",
+  "squirrel/sqapi.cpp",
+  "squirrel/sqbaselib.cpp",
+  "squirrel/sqclass.cpp",
+  "squirrel/sqcompiler.cpp",
+  "squirrel/sqdebug.cpp",
+  "squirrel/sqfuncstate.cpp",
+  "squirrel/sqlexer.cpp",
+  "squirrel/sqmem.cpp",
+  "squirrel/sqobject.cpp",
+  "squirrel/sqstate.cpp",
+  "squirrel/sqtable.cpp",
+  "squirrel/sqvm.cpp",
+], root_build_dir, "//src/3rdparty/squirrel")
