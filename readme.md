@@ -25,6 +25,5 @@ $DEVKITPRO/tools/bin/3dsxtool openttd openttd.3dsx
 ```
 * You will need to copy the generated folders from bin, the 3dsx file, as well as `openttd.cfg` and the `data` folder into a new folder for distribution. This is also done automatically by the CI.
 
-If you are having issues finding 
 ## Why 0.7.0?
 Smaller memory footprint, already a port on DS. This version will be bumped, and compatiblity may only be kept with the new 3ds.
