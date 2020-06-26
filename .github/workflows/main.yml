@@ -1,0 +1,44 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+    
+    # Runs a set of commands using the runners shell
+    - name: Make Binary.
+      run: |
+        wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb
+        sudo dpkg -i devkitpro-pacman.deb
+        export DEVKITPRO=/opt/devkitpro
+        export DEVKITARM=${DEVKITPRO}/devkitARM
+        export DEVKITPPC=${DEVKITPRO}/devkitPPC
+        export PATH=${DEVKITPRO}/tools/bin:$PATH
+        
+        sudo dkp-pacman -Sy --noconfirm 3ds-examples 3ds-sdl 3ds-pkg-config citro2d citro3d devkitarm-crtls devkitarm-rules libctru 3dslink 3dstools devkit-env devkitARM general-tools picasso tex3ds
+        ./configure /configure --os=N3DS --host $DEVKITARM/bin/arm-none-eabi --enable-static --prefix-dir=$DEVKITPRO --with-sdl --without-png --without-threads --disable-network --disable-unicode --without-libfontconfig --without-zlib --without-libfreetype --without-icu --enable-debug=2 --with-sdl=/opt/devkitpro/portlibs/3ds/bin/sdl-config
+        make -j8
+        $DEVKITPRO/tools/bin/3dsxtool ./bin/openttd ./bin/openttd.3dsx
+        rm ./bin/openttd
+    - uses: actions/upload-artifact@v2
+      with:
+        name: openttd
+        path: ./bin/
+    
