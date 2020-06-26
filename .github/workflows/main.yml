@@ -36,6 +36,8 @@ jobs:
         ./configure /configure --os=N3DS --host $DEVKITARM/bin/arm-none-eabi --enable-static --prefix-dir=$DEVKITPRO --with-sdl --without-png --without-threads --disable-network --disable-unicode --without-libfontconfig --without-zlib --without-libfreetype --without-icu --enable-debug=2 --with-sdl=/opt/devkitpro/portlibs/3ds/bin/sdl-config
         make -j8
         $DEVKITPRO/tools/bin/3dsxtool ./bin/openttd ./bin/openttd.3dsx
+        cp -r ./data/ ./bin/data
+        cp openttd.cfg ./bin/openttd.cfg
         rm ./bin/openttd
     - uses: actions/upload-artifact@v2
       with:
